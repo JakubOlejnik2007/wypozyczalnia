@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="Wypozyczalnia.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Wypozyczalnia"
-    Shell.FlyoutBehavior="Disabled"
-    Title="Wypozyczalnia">
+<Shell x:Class="Wypozyczalnia.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:Wypozyczalnia.Views"
+       Shell.FlyoutBehavior="Locked"
+       FlyoutWidth="240"
+       Title="Wypożyczalnia sprzętu">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Nagłówek menu bocznego -->
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout Padding="20,24,20,16" Spacing="2">
+            <Label Text="📦 Wypożyczalnia" FontSize="20" FontAttributes="Bold" />
+            <Label Text="Sprzęt szkolny" Style="{StaticResource Podtytul}" />
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
 
+    <!-- Stopka menu: zalogowany operator + wylogowanie -->
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout Padding="20,12,20,20" Spacing="8">
+            <Label Text="Zalogowano jako:" Style="{StaticResource Podtytul}" />
+            <Label x:Name="OperatorLabel" Text="Jan Kowalski" FontAttributes="Bold" />
+            <Button Text="Wyloguj" Style="{StaticResource PrzyciskDrugorzedny}" />
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+    <!-- Logowanie (bez pozycji w menu) -->
+    <ShellContent Title="Logowanie"
+                  Route="login"
+                  FlyoutItemIsVisible="False"
+                  ContentTemplate="{DataTemplate views:LoginPage}" />
+
+    <!-- Główne ekrany -->
+    <ShellContent Title="🔑  Wypożycz"
+                  Route="wypozycz"
+                  ContentTemplate="{DataTemplate views:WypozyczPage}" />
+    <ShellContent Title="🗂  Lista sprzętu"
+                  Route="sprzet"
+                  ContentTemplate="{DataTemplate views:SprzetPage}" />
+    <ShellContent Title="⏳  Aktualne wypożyczenia"
+                  Route="aktywne"
+                  ContentTemplate="{DataTemplate views:AktywnePage}" />
+    <ShellContent Title="📜  Historia wypożyczeń"
+                  Route="historia"
+                  ContentTemplate="{DataTemplate views:HistoriaPage}" />
 </Shell>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Kolory aplikacji (jasny / ciemny motyw) -->
+    <Color x:Key="Akcent">#2B5CB0</Color>
+    <Color x:Key="Sukces">#2E7D32</Color>
+    <Color x:Key="Ostrzezenie">#C62828</Color>
+    <Color x:Key="TloStronyJasne">#F4F6FA</Color>
+    <Color x:Key="TloStronyCiemne">#16181D</Color>
+    <Color x:Key="TloKartyJasne">#FFFFFF</Color>
+    <Color x:Key="TloKartyCiemne">#23262D</Color>
+    <Color x:Key="RamkaJasna">#DDE2EA</Color>
+    <Color x:Key="RamkaCiemna">#3A3E47</Color>
+    <Color x:Key="TekstDrugorzednyJasny">#5F6673</Color>
+    <Color x:Key="TekstDrugorzednyCiemny">#A5ABB8</Color>
+
+    <!-- Tło strony -->
+    <Style x:Key="Strona" TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Light={StaticResource TloStronyJasne}, Dark={StaticResource TloStronyCiemne}}" />
+    </Style>
+
+    <!-- Karta -->
+    <Style x:Key="Karta" TargetType="Border">
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Light={StaticResource TloKartyJasne}, Dark={StaticResource TloKartyCiemne}}" />
+        <Setter Property="Stroke"
+                Value="{AppThemeBinding Light={StaticResource RamkaJasna}, Dark={StaticResource RamkaCiemna}}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="20" />
+    </Style>
+
+    <!-- Teksty -->
+    <Style x:Key="Tytul" TargetType="Label">
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+    <Style x:Key="Podtytul" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource TekstDrugorzednyJasny}, Dark={StaticResource TekstDrugorzednyCiemny}}" />
+    </Style>
+    <Style x:Key="Etykieta" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="Margin" Value="0,12,0,4" />
+    </Style>
+    <Style x:Key="NaglowekKolumny" TargetType="Label">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource TekstDrugorzednyJasny}, Dark={StaticResource TekstDrugorzednyCiemny}}" />
+    </Style>
+
+    <!-- Przyciski -->
+    <Style x:Key="PrzyciskGlowny" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Akcent}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="Padding" Value="20,0" />
+    </Style>
+    <Style x:Key="PrzyciskDrugorzedny" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource Akcent}" />
+        <Setter Property="BorderColor" Value="{StaticResource Akcent}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="Padding" Value="20,0" />
+    </Style>
+    <Style x:Key="PrzyciskMaly" TargetType="Button" BasedOn="{StaticResource PrzyciskGlowny}">
+        <Setter Property="HeightRequest" Value="34" />
+        <Setter Property="Padding" Value="14,0" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <!-- Plakietka statusu -->
+    <Style x:Key="Plakietka" TargetType="Border">
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="10,3" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+    <Style x:Key="PlakietkaTekst" TargetType="Label">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+</ResourceDictionary>
