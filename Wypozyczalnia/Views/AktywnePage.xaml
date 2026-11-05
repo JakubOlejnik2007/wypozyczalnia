@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Wypozyczalnia.Views.AktywnePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Style="{StaticResource Strona}"
+             Title="Aktualne wypożyczenia">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="32" RowSpacing="16">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="2">
+            <Label Text="Aktualne wypożyczenia" Style="{StaticResource Tytul}" />
+            <Label Text="Sprzęt, który jest teraz wypożyczony. Przyjmij zwrot przyciskiem w wierszu."
+                   Style="{StaticResource Podtytul}" />
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+            <SearchBar x:Name="SzukajSearchBar" Grid.Column="0" Placeholder="Szukaj po osobie lub sprzęcie…" />
+            <Button x:Name="OdswiezButton" Grid.Column="1" Text="Odśwież" Style="{StaticResource PrzyciskDrugorzedny}" />
+        </Grid>
+
+        <Border Grid.Row="2" Style="{StaticResource Karta}" Padding="0">
+            <Grid RowDefinitions="Auto,*">
+
+                <Grid Grid.Row="0" ColumnDefinitions="70,*,*,170,*,120" Padding="20,14" ColumnSpacing="12">
+                    <Label Grid.Column="0" Text="NR"          Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="1" Text="SPRZĘT"      Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="2" Text="OSOBA"       Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="3" Text="DATA WYPOŻYCZENIA" Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="4" Text="NOTATKA"     Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="5" Text=""            Style="{StaticResource NaglowekKolumny}" />
+                </Grid>
+
+                <CollectionView x:Name="AktywneCollection" Grid.Row="1" SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <Label Text="Brak aktywnych wypożyczeń."
+                               Style="{StaticResource Podtytul}"
+                               HorizontalOptions="Center" Margin="0,60" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="70,*,*,170,*,120" Padding="20,10" ColumnSpacing="12">
+                                <Label Grid.Column="0" Text="{Binding id}" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding sprzet}" FontAttributes="Bold" VerticalOptions="Center" />
+                                <Label Grid.Column="2" Text="{Binding osoba}" VerticalOptions="Center" />
+                                <Label Grid.Column="3" Text="{Binding data_wypozyczenia, StringFormat='{0:dd.MM.yyyy HH:mm}'}"
+                                       VerticalOptions="Center" />
+                                <Label Grid.Column="4" Text="{Binding notatka}" LineBreakMode="TailTruncation"
+                                       VerticalOptions="Center" />
+                                <Button Grid.Column="5" Text="Zwróć" Style="{StaticResource PrzyciskMaly}"
+                                        VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

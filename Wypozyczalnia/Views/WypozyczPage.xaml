@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Wypozyczalnia.Views.WypozyczPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Style="{StaticResource Strona}"
+             Title="Wypożycz sprzęt">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32" Spacing="20">
+
+            <VerticalStackLayout Spacing="2">
+                <Label Text="Wypożycz sprzęt" Style="{StaticResource Tytul}" />
+                <Label Text="Wybierz dostępny egzemplarz i wpisz dane osoby wypożyczającej."
+                       Style="{StaticResource Podtytul}" />
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
+
+                <!-- Formularz -->
+                <Border Grid.Column="0" Style="{StaticResource Karta}">
+                    <VerticalStackLayout>
+                        <Label Text="Nowe wypożyczenie" FontSize="18" FontAttributes="Bold" />
+
+                        <Label Text="Sprzęt (tylko dostępny)" Style="{StaticResource Etykieta}" />
+                        <Picker x:Name="SprzetPicker"
+                                Title="Wybierz sprzęt…"
+                                ItemDisplayBinding="{Binding NazwaZKodem}" />
+
+                        <Label Text="Imię i nazwisko osoby wypożyczającej" Style="{StaticResource Etykieta}" />
+                        <Entry x:Name="OsobaEntry" Placeholder="np. Anna Nowak" />
+
+                        <Label Text="Notatka (opcjonalnie)" Style="{StaticResource Etykieta}" />
+                        <Editor x:Name="NotatkaEditor"
+                                Placeholder="Np. stan sprzętu, uwagi…"
+                                HeightRequest="100"
+                                AutoSize="Disabled" />
+
+                        <Label x:Name="KomunikatLabel"
+                               Text=""
+                               FontSize="13"
+                               IsVisible="False"
+                               Margin="0,12,0,0" />
+
+                        <HorizontalStackLayout Spacing="12" Margin="0,20,0,0">
+                            <Button x:Name="WypozyczButton"
+                                    Text="Wypożycz"
+                                    Style="{StaticResource PrzyciskGlowny}" />
+                            <Button x:Name="WyczyscButton"
+                                    Text="Wyczyść"
+                                    Style="{StaticResource PrzyciskDrugorzedny}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Podgląd dostępnego sprzętu -->
+                <Border Grid.Column="1" Style="{StaticResource Karta}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Dostępny sprzęt" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="Kliknij pozycję, aby wybrać ją w formularzu."
+                               Style="{StaticResource Podtytul}" />
+
+                        <CollectionView x:Name="DostepneCollection"
+                                        SelectionMode="Single"
+                                        HeightRequest="320">
+                            <CollectionView.EmptyView>
+                                <Label Text="Brak dostępnego sprzętu."
+                                       Style="{StaticResource Podtytul}"
+                                       HorizontalOptions="Center"
+                                       Margin="0,40" />
+                            </CollectionView.EmptyView>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="70,*" Padding="8,10">
+                                        <Label Grid.Column="0" Text="{Binding kod}" FontAttributes="Bold"
+                                               TextColor="{StaticResource Akcent}" />
+                                        <Label Grid.Column="1" Text="{Binding nazwa}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Wypozyczalnia.Views.SprzetPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Style="{StaticResource Strona}"
+             Title="Lista sprzętu">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="32" RowSpacing="16">
+
+        <HorizontalStackLayout Grid.Row="0" Spacing="16">
+            <VerticalStackLayout Spacing="2">
+                <Label Text="Lista sprzętu" Style="{StaticResource Tytul}" />
+                <Label Text="Wszystkie egzemplarze wraz z aktualnym statusem."
+                       Style="{StaticResource Podtytul}" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <!-- Filtry -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,220,200,Auto" ColumnSpacing="12">
+            <SearchBar x:Name="SzukajSearchBar" Grid.Column="0" Placeholder="Szukaj po nazwie lub kodzie…" />
+            <Picker x:Name="KategoriaPicker" Grid.Column="1" Title="Wszystkie kategorie" VerticalOptions="Center" />
+            <Picker x:Name="StatusPicker" Grid.Column="2" Title="Każdy status" VerticalOptions="Center" />
+            <Button x:Name="OdswiezButton" Grid.Column="3" Text="Odśwież" Style="{StaticResource PrzyciskDrugorzedny}" />
+        </Grid>
+
+        <!-- Tabela -->
+        <Border Grid.Row="2" Style="{StaticResource Karta}" Padding="0">
+            <Grid RowDefinitions="Auto,*">
+
+                <Grid Grid.Row="0" ColumnDefinitions="90,*,180,*,140" Padding="20,14" ColumnSpacing="12">
+                    <Label Grid.Column="0" Text="KOD"       Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="1" Text="NAZWA"     Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="2" Text="KATEGORIA" Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="3" Text="OPIS"      Style="{StaticResource NaglowekKolumny}" />
+                    <Label Grid.Column="4" Text="STATUS"    Style="{StaticResource NaglowekKolumny}" />
+                </Grid>
+
+                <CollectionView x:Name="SprzetCollection" Grid.Row="1" SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <Label Text="Brak sprzętu do wyświetlenia."
+                               Style="{StaticResource Podtytul}"
+                               HorizontalOptions="Center" Margin="0,60" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="90,*,180,*,140" Padding="20,12" ColumnSpacing="12">
+                                <Label Grid.Column="0" Text="{Binding kod}" FontAttributes="Bold"
+                                       TextColor="{StaticResource Akcent}" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding nazwa}" VerticalOptions="Center" />
+                                <Label Grid.Column="2" Text="{Binding kategoria}" VerticalOptions="Center" />
+                                <Label Grid.Column="3" Text="{Binding opis}" LineBreakMode="TailTruncation"
+                                       VerticalOptions="Center" />
+
+                                <!-- Plakietka statusu: zielona = dostępny, czerwona = wypożyczony -->
+                                <Border Grid.Column="4" Style="{StaticResource Plakietka}"
+                                        BackgroundColor="{StaticResource Sukces}">
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding czy_wypozyczone}" Value="True">
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Ostrzezenie}" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <Label Style="{StaticResource PlakietkaTekst}" Text="Dostępny">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding czy_wypozyczone}" Value="True">
+                                                <Setter Property="Text" Value="Wypożyczony" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
