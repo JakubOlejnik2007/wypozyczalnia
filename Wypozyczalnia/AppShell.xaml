@@ -20,7 +20,7 @@
         <VerticalStackLayout Padding="20,12,20,20" Spacing="8">
             <Label Text="Zalogowano jako:" Style="{StaticResource Podtytul}" />
             <Label x:Name="OperatorLabel" Text="Jan Kowalski" FontAttributes="Bold" />
-            <Button Text="Wyloguj" Style="{StaticResource PrzyciskDrugorzedny}" />
+            <Button x:Name="WylogujButton" Clicked="WylogujButton_Clicked" Text="Wyloguj" Style="{StaticResource PrzyciskDrugorzedny}" />
         </VerticalStackLayout>
     </Shell.FlyoutFooter>
 

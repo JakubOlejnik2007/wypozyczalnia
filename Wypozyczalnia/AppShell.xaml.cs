@@ -6,4 +6,10 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
     }
+
+    private async void WylogujButton_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//login");
+
+    }
 }

@@ -5,7 +5,7 @@ namespace Wypozyczalnia.Views;
 public partial class LoginPage : ContentPage
 {
     private const string ConnectionString =
-       "server=mysql.mikr.us;database=;uid=;pwd=;";
+       "server=;database=;uid=;pwd=;";
 
     public LoginPage()
     {
@@ -44,7 +44,10 @@ public partial class LoginPage : ContentPage
                 await cmd.ExecuteScalarAsync());
 
             if (wynik > 0) {
-                await DisplayAlert("OK", "Logowanie poprawne", "OK");
+                LoginEntry.Text = "";
+                HasloEntry.Text = "";
+                await Shell.Current.GoToAsync("//wypozycz");
+
             } else {
                 BladLabel.IsVisible = true;
             }
