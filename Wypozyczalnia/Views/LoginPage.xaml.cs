@@ -4,7 +4,6 @@ namespace Wypozyczalnia.Views;
 
 public partial class LoginPage : ContentPage
 {
-
     public LoginPage()
     {
         InitializeComponent();
@@ -23,7 +22,7 @@ public partial class LoginPage : ContentPage
         }
 
         try {
-            using var conn = new MySqlConnection(ConnectionString);
+            using var conn = new MySqlConnection(Config.ConnectionString);
 
             await conn.OpenAsync();
 
