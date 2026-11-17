@@ -4,8 +4,6 @@ namespace Wypozyczalnia.Views;
 
 public partial class LoginPage : ContentPage
 {
-    private const string ConnectionString =
-       "server=mysql.mikr.us;database=;uid=;pwd=;";
 
     public LoginPage()
     {
@@ -18,8 +16,8 @@ public partial class LoginPage : ContentPage
 
         if (string.IsNullOrEmpty(login) ||
             string.IsNullOrEmpty(haslo)) {
-            await DisplayAlert("B³¹d",
-                "Wpisz login i has³o.",
+            await DisplayAlert("BÂ³Â¹d",
+                "Wpisz login i hasÂ³o.",
                 "OK");
             return;
         }
@@ -47,13 +45,12 @@ public partial class LoginPage : ContentPage
                 LoginEntry.Text = "";
                 HasloEntry.Text = "";
                 await Shell.Current.GoToAsync("//wypozycz");
-
             } else {
                 BladLabel.IsVisible = true;
             }
         } catch (Exception ex) {
             await DisplayAlert(
-                "B³¹d po³¹czenia",
+                "BÂ³Â¹d poÂ³Â¹czenia",
                 ex.Message,
                 "OK");
         }
