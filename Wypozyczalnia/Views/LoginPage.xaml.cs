@@ -5,7 +5,7 @@ namespace Wypozyczalnia.Views;
 public partial class LoginPage : ContentPage
 {
     private const string ConnectionString =
-       "server=;database=;uid=;pwd=;";
+       "server=mysql.mikr.us;database=;uid=;pwd=;";
 
     public LoginPage()
     {
