@@ -15,8 +15,8 @@ public partial class LoginPage : ContentPage
 
         if (string.IsNullOrEmpty(login) ||
             string.IsNullOrEmpty(haslo)) {
-            await DisplayAlert("B³¹d",
-                "Wpisz login i has³o.",
+            await DisplayAlert("BÂ³Â¹d",
+                "Wpisz login i hasÂ³o.",
                 "OK");
             return;
         }
@@ -41,13 +41,15 @@ public partial class LoginPage : ContentPage
                 await cmd.ExecuteScalarAsync());
 
             if (wynik > 0) {
+                LoginEntry.Text = "";
+                HasloEntry.Text = "";
                 await Shell.Current.GoToAsync("//wypozycz");
             } else {
                 BladLabel.IsVisible = true;
             }
         } catch (Exception ex) {
             await DisplayAlert(
-                "B³¹d po³¹czenia",
+                "BÂ³Â¹d poÂ³Â¹czenia",
                 ex.Message,
                 "OK");
         }
