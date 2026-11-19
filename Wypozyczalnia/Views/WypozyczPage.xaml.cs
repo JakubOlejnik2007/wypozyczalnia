@@ -19,7 +19,7 @@ public partial class WypozyczPage : ContentPage {
 
     protected override async void OnAppearing() {
         base.OnAppearing();
-
+        WyczyscFormularz();
         await ZaladujSprzetAsync();
     }
 
@@ -118,8 +118,8 @@ public partial class WypozyczPage : ContentPage {
                 // sprawdzenie czy sprzêt nadal jest dostêpny
                 string sqlSprawdz =
                     @"SELECT czy_wypozyczone
-      FROM sprzet
-      WHERE id = @id";
+                      FROM sprzet
+                      WHERE id = @id";
 
                 using var cmdSprawdz =
                     new MySqlCommand(
@@ -216,8 +216,6 @@ public partial class WypozyczPage : ContentPage {
                     Colors.Green;
 
                 KomunikatLabel.IsVisible = true;
-
-                WyczyscFormularz();
 
                 await ZaladujSprzetAsync();
             } catch {
