@@ -71,9 +71,9 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid ColumnDefinitions="70,*" Padding="8,10">
-                                        <Label Grid.Column="0" Text="{Binding kod}" FontAttributes="Bold"
+                                        <Label Grid.Column="0" Text="{Binding Kod}" FontAttributes="Bold"
                                                TextColor="{StaticResource Akcent}" />
-                                        <Label Grid.Column="1" Text="{Binding nazwa}" />
+                                        <Label Grid.Column="1" Text="{Binding Nazwa}" />
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>

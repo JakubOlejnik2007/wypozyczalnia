@@ -15,8 +15,8 @@ public partial class LoginPage : ContentPage
 
         if (string.IsNullOrEmpty(login) ||
             string.IsNullOrEmpty(haslo)) {
-            await DisplayAlert("B³¹d",
-                "Wpisz login i has³o.",
+            await DisplayAlert("Błąd",
+                "Wpisz login i hasło.",
                 "OK");
             return;
         }
@@ -27,7 +27,7 @@ public partial class LoginPage : ContentPage
             await conn.OpenAsync();
 
             string sql =
-                @"SELECT COUNT(*)
+                @"SELECT id
                   FROM operatorzy
                   WHERE login=@login
                   AND haslo_hash=@haslo";
@@ -43,13 +43,14 @@ public partial class LoginPage : ContentPage
             if (wynik > 0) {
                 LoginEntry.Text = "";
                 HasloEntry.Text = "";
+                Session.OperatorId = wynik;
                 await Shell.Current.GoToAsync("//wypozycz");
             } else {
                 BladLabel.IsVisible = true;
             }
         } catch (Exception ex) {
             await DisplayAlert(
-                "B³¹d po³¹czenia",
+                "Błąd połączenia",
                 ex.Message,
                 "OK");
         }
