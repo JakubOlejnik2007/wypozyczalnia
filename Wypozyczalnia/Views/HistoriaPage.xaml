@@ -35,7 +35,7 @@
                     <Label Grid.Column="6" Text="STATUS"      Style="{StaticResource NaglowekKolumny}" />
                 </Grid>
 
-                <CollectionView x:Name="HistoriaCollection" Grid.Row="1" SelectionMode="None">
+                <CollectionView x:Name="HistoriaCollection" Grid.Row="1" SelectionMode="None" Loaded="HistoriaCollection_Loaded">
                     <CollectionView.EmptyView>
                         <Label Text="Brak wypożyczeń."
                                Style="{StaticResource Podtytul}"
@@ -52,7 +52,7 @@
                                 <Label Grid.Column="4" Text="{Binding data_zwrotu, StringFormat='{0:dd.MM.yyyy HH:mm}', TargetNullValue='—'}"
                                        VerticalOptions="Center" />
                                 <Label Grid.Column="5" Text="{Binding notatka}" LineBreakMode="TailTruncation"
-                                       VerticalOptions="Center" />
+                                       VerticalOptions="Start" />
 
                                 <!-- Plakietka: niebieska = aktywne, zielona = zakończone -->
                                 <Border Grid.Column="6" Style="{StaticResource Plakietka}"

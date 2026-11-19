@@ -4,28 +4,28 @@ namespace Wypozyczalnia.Views;
 
 public partial class LoginPage : ContentPage
 {
-    private const string ConnectionString =
-       "server=mysql.mikr.us;database=;uid=;pwd=;";
-
     public LoginPage()
     {
         InitializeComponent();
     }
 
-    private async void ZalogujButton_Clicked(object sender, EventArgs e) {
+    private async void ZalogujButton_Clicked(object sender, EventArgs e)
+    {
         string login = LoginEntry.Text?.Trim();
         string haslo = HasloEntry.Text;
 
         if (string.IsNullOrEmpty(login) ||
-            string.IsNullOrEmpty(haslo)) {
-            await DisplayAlert("B³¹d",
-                "Wpisz login i has³o.",
+            string.IsNullOrEmpty(haslo))
+        {
+            await DisplayAlert("B??d",
+                "Wpisz login i has?o.",
                 "OK");
             return;
         }
 
-        try {
-            using var conn = new MySqlConnection(ConnectionString);
+        try
+        {
+            using var conn = new MySqlConnection(Config.ConnectionString);
 
             await conn.OpenAsync();
 
@@ -43,14 +43,21 @@ public partial class LoginPage : ContentPage
             int wynik = Convert.ToInt32(
                 await cmd.ExecuteScalarAsync());
 
-            if (wynik > 0) {
-                await DisplayAlert("OK", "Logowanie poprawne", "OK");
-            } else {
+            if (wynik > 0)
+            {
+                LoginEntry.Text = "";
+                HasloEntry.Text = "";
+                await Shell.Current.GoToAsync("//wypozycz");
+            }
+            else
+            {
                 BladLabel.IsVisible = true;
             }
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             await DisplayAlert(
-                "B³¹d po³¹czenia",
+                "B??d po??czenia",
                 ex.Message,
                 "OK");
         }
