@@ -51,7 +51,7 @@
                                        VerticalOptions="Center" />
                                 <Label Grid.Column="4" Text="{Binding data_zwrotu, StringFormat='{0:dd.MM.yyyy HH:mm}', TargetNullValue='—'}"
                                        VerticalOptions="Center" />
-                                <Label Grid.Column="5" Text="{Binding notatka}" LineBreakMode="TailTruncation"
+                                <Label Grid.Column="5" Text="{Binding notatka}" LineBreakMode="WordWrap"
                                        VerticalOptions="Start" />
 
                                 <!-- Plakietka: niebieska = aktywne, zielona = zakończone -->
